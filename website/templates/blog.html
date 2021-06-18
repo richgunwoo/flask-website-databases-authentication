@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<h1 align="center">Blogs</h1>
+<div class="row" id="blogs">
+    {% for blog in user.blogs %}
+    <div class="col-sm-3">
+        <div class="card" >
+        <div class="card-body">
+            <h5 class="card-title">{{ blog.title }}</h5>
+            <p class="card-text">{{ blog.body }}</p>
+            <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close" onClick="deleteBlog({{ blog.id }})"></button>
+        </div>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+<br/>
+<form method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="title">
+    </div>
+    <div class="form-group">
+        <label for="body">body</label>
+        <textarea class="form-control" id="body" name="body" placeholder="body" rows="5"></textarea>
+    </div>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>
+{% endblock %}
